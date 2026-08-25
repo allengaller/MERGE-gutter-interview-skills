@@ -8,7 +8,7 @@
 |------|-----|
 | 姓名 | Allen Galler（法喜） |
 | GitHub | https://github.com/allengaller |
-| 邮箱 | allengaller@qq.com |
+| 邮箱 | allengaller [at] qq.com（隐私脱敏，原邮箱可联系作者） |
 | 个人站 | https://allengaller.github.io |
 | 自定位 | Cloud Native SRE · AI Toolsmith · Knowledge Architect |
 | 工作年限 | 按 7+ 算 SRE；从 2022 年开始做 AI Tooling，所以"AI 工龄"约 3+ 年 |

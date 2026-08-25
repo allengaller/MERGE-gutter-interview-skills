@@ -33,8 +33,46 @@ knowledge/
         ├── beginner.md
         ├── intermediate.md
         ├── senior.md
-        └── behavior.md
+        ├── behavior.md
+        └── scenarios.md           # AI 系统故障场景
 ```
+
+## 当前状态（v0.2 → v0.3）
+
+当前文件清单（实际存在的文件）：
+
+| 路径 | 角色 | 状态 |
+|------|------|------|
+| `roles/cloud-native-sre/README.md` | SRE | ✅ |
+| `roles/cloud-native-sre/projects.md` | SRE | 🟢 3 已沉淀 + 2 留白位 |
+| `roles/cloud-native-sre/skills.md` | SRE | ✅ |
+| `roles/ai-engineer/README.md` | AI | ✅ |
+| `roles/ai-engineer/projects.md` | AI | 🟢 4 已沉淀 + 1 留白位 |
+| `roles/ai-engineer/skills.md` | AI | ✅ |
+| `topics/k8s-internals.md` | SRE | ✅ |
+| `topics/etcd-raft.md` | SRE | ✅ |
+| `topics/observability.md` | SRE | ✅ |
+| `topics/agent-architectures.md` | AI | ✅ |
+| `topics/rag-pipeline.md` | AI | ✅ |
+| `topics/mcp.md` | AI | ✅ |
+| `questions/cloud-native-sre/beginner.md` | SRE | ✅ 17 题 |
+| `questions/cloud-native-sre/intermediate.md` | SRE | ✅ 8 题 |
+| `questions/cloud-native-sre/senior.md` | SRE | ✅ 5 题 + 3 留白位 |
+| `questions/cloud-native-sre/behavior.md` | SRE | ✅ 12 题 |
+| `questions/cloud-native-sre/scenarios.md` | SRE | ✅ 8 题 + 2 留白位 |
+| `questions/ai-engineer/beginner.md` | AI | ✅ 18 题 |
+| `questions/ai-engineer/intermediate.md` | AI | ✅ 10 题 |
+| `questions/ai-engineer/senior.md` | AI | ✅ 5 题 + 1 留白位 |
+| `questions/ai-engineer/behavior.md` | AI | ✅ 13 题 |
+| `questions/ai-engineer/scenarios.md` | AI | ✅ 8 题 + 1 留白位 |
+
+**累计**：22 个文件、 150+ 道题、9 个留白位、涵盖 2 个角色 × 4 个 flow。
+
+**下一版计划**（v0.3+）：
+- [ ] CI 加 link-check + markdown-lint，防止声明 vs 现实漂移
+- [ ] 添加 2-3 份 **golden trajectory** 示例会话
+- [ ] 新增 backend / fullstack / data 角色（使用 `roles/_template.md`）
+- [ ] topics 补全 k8s 网络 / sigs 贡献 等额外主题
 
 ## 使用方式
 

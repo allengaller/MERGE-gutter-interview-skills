@@ -65,10 +65,12 @@ description: |
 | `flows/coding.md` | 编码面试流程 |
 | `flows/behavior.md` | 行为面试流程 |
 | `flows/incident-response.md` | 故障复盘流程（SRE 特有） |
+| `roles/_template.md` | 新增角色的模板（必填字段） |
 | `roles/cloud-native-sre.md` | 云原生 SRE 面试官画像 |
 | `roles/ai-engineer.md` | AI 智能体工程师面试官画像 |
 | `rubrics/*.md` | 各流程的评分维度 |
 | `prompts/quick-start.md` | 一句话启动 prompt 模板 |
+| `CONFIG.md` | **可配置开关**（严格度 / 时长 / 追问层级 / 反馈风格 等 12 个维度） |
 | `../../knowledge/` | 知识库（题库、主题、用户背景） |
 
 ## 收尾模板

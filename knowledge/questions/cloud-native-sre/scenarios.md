@@ -83,7 +83,7 @@ agent 抽题后，按 `../../../.claude/skills/interview-coach/flows/incident-re
 - 缓解：调整 sidecar resource / 优化 iptables → eBPF（istio 1.20+）
 - 反思：**为什么上 Istio？**这是关键 — 没想清楚就别上
 
-**及格线**：能直接说"在排查之前先问 — 我们为什么上 Istro" — 体现工程判断力。
+**及格线**：能直接说"在排查之前先问 — 我们为什么上 Istio" — 体现工程判断力。
 **追问方向**：什么时候该上 mesh？什么时候不该上？
 
 ---
