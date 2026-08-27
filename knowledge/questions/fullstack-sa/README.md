@@ -1,0 +1,36 @@
+# 全栈 SA（解决方案架构师）· 多轮面试题库
+
+> 基于真实岗位 JD 生成，覆盖完整面试链路：**HR 初面 → 业务方案面 → 技术深度面 → 高管面 → 压力终面**。
+> 每轮独立成卷，可单独练习，也可按顺序串成一场完整模拟。
+
+## 岗位能力模型（对齐 JD）
+
+| JD 能力模块 | 主要考察轮次 |
+|---|---|
+| 客户需求洞察及方案设计 | Round 2（业务方案面） |
+| 售前引导与实操能力（POC/演示/差异化） | Round 2 + Round 5 |
+| 技术策略制定和项目赢单 | Round 2 + Round 4 |
+| AI 落地实践（RAG/微调/推理优化） | Round 3（技术深度面） |
+| 云架构与产品（七大件/PAI/百炼） | Round 3 |
+| 跨 BU 协同 / 赢单 / 战略思维 | Round 4（高管面） |
+| 抗压 / 价值观 / 真实性 | Round 5（压力终面） |
+| 动机 / 稳定性 / 文化匹配 | Round 1（HR 初面） |
+
+## 五轮导航
+
+| 轮次 | 文件 | 面试官 | 时长 | 核心目的 |
+|---|---|---|---|---|
+| Round 1 | [round1-hr.md](round1-hr.md) | HR / HRBP | 30 min | 动机、稳定性、软技能、薪资 |
+| Round 2 | [round2-solution.md](round2-solution.md) | 资深 SA / 直属领导 | 60 min | 方案设计、POC、差异化（核心轮） |
+| Round 3 | [round3-technical.md](round3-technical.md) | 产研 / 技术专家交叉面 | 60 min | AI 落地真功夫、云架构细节、动手 |
+| Round 4 | [round4-executive.md](round4-executive.md) | 总监 / VP | 45 min | 战略、商业洞察、赢单、价值观 |
+| Round 5 | [round5-stress.md](round5-stress.md) | 多对一 / 刁钻面试官 | 45 min | 抗压、逻辑一致性、底线 |
+
+## 使用建议
+
+- **串场模拟**：按 Round 1 → 5 顺序走，每轮之间休息，模拟真实一天/多天面试节奏。
+- **单轮突破**：哪轮弱练哪轮；压力面（Round 5）建议放在状态最好时练，最磨人。
+- **贯穿场景**：Round 2/3/4 共用同一个制造业客户场景（见 round2-solution.md 开头），保持回答一致性——真实面试里前后轮会交叉验证你说过的话。
+- **红线优先**：每道题标注了"红线"，先保证不踩红线，再追求亮点。
+
+> 与角色卡配套：`.claude/skills/interview-coach/roles/fullstack-sa.md`（面试官画像与追问风格）。

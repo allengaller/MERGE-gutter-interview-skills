@@ -29,15 +29,22 @@ knowledge/
     │   ├── senior.md              #   5y+
     │   ├── behavior.md            #   行为面试
     │   └── scenarios.md           #   故障场景
-    └── ai-engineer/
-        ├── beginner.md
-        ├── intermediate.md
-        ├── senior.md
-        ├── behavior.md
-        └── scenarios.md           # AI 系统故障场景
+    ├── ai-engineer/
+    │   ├── beginner.md
+    │   ├── intermediate.md
+    │   ├── senior.md
+    │   ├── behavior.md
+    │   └── scenarios.md           # AI 系统故障场景
+    └── fullstack-sa/              #   全栈 SA（多轮面试链路）
+        ├── README.md              #     五轮导航 + JD 能力映射
+        ├── round1-hr.md           #     HR 初面
+        ├── round2-solution.md     #     业务方案面（核心）
+        ├── round3-technical.md    #     技术深度面
+        ├── round4-executive.md    #     高管面
+        └── round5-stress.md       #     压力终面
 ```
 
-## 当前状态（v0.2 → v0.3）
+## 当前状态（v0.3 → v0.4）
 
 当前文件清单（实际存在的文件）：
 
@@ -65,12 +72,19 @@ knowledge/
 | `questions/ai-engineer/senior.md` | AI | ✅ 5 题 + 1 留白位 |
 | `questions/ai-engineer/behavior.md` | AI | ✅ 13 题 |
 | `questions/ai-engineer/scenarios.md` | AI | ✅ 8 题 + 1 留白位 |
+| `questions/fullstack-sa/README.md` | SA | ✅ 五轮导航 + JD 映射 |
+| `questions/fullstack-sa/round1-hr.md` | SA | ✅ 10 题（HR 初面） |
+| `questions/fullstack-sa/round2-solution.md` | SA | ✅ 11 题（业务方案面） |
+| `questions/fullstack-sa/round3-technical.md` | SA | ✅ 10 题（技术深度面） |
+| `questions/fullstack-sa/round4-executive.md` | SA | ✅ 10 题（高管面） |
+| `questions/fullstack-sa/round5-stress.md` | SA | ✅ 11 题（压力终面） |
 
-**累计**：22 个文件、 150+ 道题、9 个留白位、涵盖 2 个角色 × 4 个 flow。
+**累计**：28 个文件、200+ 道题、9 个留白位、涵盖 3 个角色（SRE / AI / 全栈 SA）。全栈 SA 按**多轮面试链路**组织（HR → 方案 → 技术 → 高管 → 压力），配套角色卡 `roles/fullstack-sa.md`。
 
 **下一版计划**（v0.3+）：
 - [ ] CI 加 link-check + markdown-lint，防止声明 vs 现实漂移
 - [ ] 添加 2-3 份 **golden trajectory** 示例会话
+- [x] 新增全栈 SA 角色（五轮面试题库，基于真实 JD）
 - [ ] 新增 backend / fullstack / data 角色（使用 `roles/_template.md`）
 - [ ] topics 补全 k8s 网络 / sigs 贡献 等额外主题
 
