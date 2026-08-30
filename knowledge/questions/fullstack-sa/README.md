@@ -8,11 +8,13 @@
 | JD 能力模块 | 主要考察轮次 |
 |---|---|
 | 客户需求洞察及方案设计 | Round 2（业务方案面） |
-| 售前引导与实操能力（POC/演示/差异化） | Round 2 + Round 5 |
+| 售前引导与实操能力（POC/演示/差异化/招投标） | Round 2 + Round 5 |
 | 技术策略制定和项目赢单 | Round 2 + Round 4 |
 | AI 落地实践（RAG/微调/推理优化） | Round 3（技术深度面） |
 | 云架构与产品（七大件/PAI/百炼） | Round 3 |
 | 跨 BU 协同 / 赢单 / 战略思维 | Round 4（高管面） |
+| 能力沉淀和赋能（知识资产/模板/培训） | Round 4 |
+| 产品需求和改进反馈（反向推动产品改进） | Round 4 |
 | 抗压 / 价值观 / 真实性 | Round 5（压力终面） |
 | 动机 / 稳定性 / 文化匹配 | Round 1（HR 初面） |
 
@@ -25,6 +27,8 @@
 | Round 3 | [round3-technical.md](round3-technical.md) | 产研 / 技术专家交叉面 | 60 min | AI 落地真功夫、云架构细节、动手 |
 | Round 4 | [round4-executive.md](round4-executive.md) | 总监 / VP | 45 min | 战略、商业洞察、赢单、价值观 |
 | Round 5 | [round5-stress.md](round5-stress.md) | 多对一 / 刁钻面试官 | 45 min | 抗压、逻辑一致性、底线 |
+
+**共 56 题**（10 + 13 + 10 + 12 + 11），每题含追问 / 参考要点 / 红线。
 
 ## 使用建议
 

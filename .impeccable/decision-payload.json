@@ -1,0 +1,108 @@
+{
+  "title": "选择视觉世界 · Interview Coach GTM",
+  "question": "骰子把「教务处成绩单」放到了 build 位。锁定它、选一个挑战者、或重掷。",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "教务处成绩单",
+      "kicker": "THE ROLL",
+      "lineage": "中国高校教务处制式成绩单与学籍档案",
+      "thesis": "每一次模拟面试都是一门要修的课：练一轮、记一科、红章为准。面试官看简历，但你的实战能力从没被打过分——先把成绩单在 agent 里练出来。",
+      "palette": ["#F7F4EC", "#1A1815", "#C23B22", "#9DB2C8"],
+      "materials": ["制式表格与发丝格线", "朱砂圆章与红笔批注", "等宽分数数字", "印刷角线对位"],
+      "viewport": "首屏即一张真实比例的成绩单：抬头「Interview Coach · 面试练习成绩证明」，学籍行「考生：云原生 SRE · 3 年经验 · 准考号 IC-2026-0417」，课程行「系统设计 92 优 / 编码面试 85 良 / 行为面试 78 中 / 故障复盘 缺考」，右下骑缝红章压住表角，红笔批注「建议重修：追问第 3 层」。主按钮「现在开练 · 修第一门课」，次链接「GitHub 培养方案」。",
+      "risk": "档案纸容易做得温吞；分数若全高分就成了自夸——必须保留缺考与低分的诚实。",
+      "raised": [
+        {
+          "from": "challenger-bench",
+          "raise": "状态用印记说：「缺考」戳、「重修」标、红笔勾、批注下划线——不用颜色让人猜。"
+        },
+        {
+          "from": "challenger-streetwear",
+          "raise": "控件状态用词面说：按钮文案即动作（「现在开练」），禁用态明写「已关闭」。"
+        },
+        {
+          "from": "challenger-plate",
+          "raise": "制版精度：发丝线分栏、角线对位每一个分数区块，印刷级对齐。"
+        },
+        {
+          "from": "challenger-saville",
+          "raise": "档案编号制：每轮练习一个准考号（IC-2026-0417），练习可计数、可索引、可回查。"
+        }
+      ],
+      "comp": ".impeccable/mocks/decision/assigned.png"
+    },
+    {
+      "id": "model-pick",
+      "label": "朱卷·墨卷",
+      "kicker": "IMPECCABLE'S PICK",
+      "lineage": "清代乡试朱卷墨卷制度：考生墨笔原卷 + 考官朱笔誊录批分",
+      "thesis": "你的回答是墨卷，agent 的评语是朱卷——两张卷子对照着看，差距和进步都写在纸上。",
+      "palette": ["#F2ECDD", "#141210", "#B03A2E", "#A98B4F"],
+      "materials": ["宣纸质感", "朱笔圈点", "木刻题头", "金榜暗金"],
+      "viewport": "左右对开双卷：左墨卷是你的回答原文，右朱卷是考官朱笔批注、圈点与分数「八十五」，卷首「2026 秋招 · 云原生 SRE 科」，朱印落款。",
+      "risk": "科举意象离工程师的日常最远，执行不狠就滑向文创布景——且它是我自己的榜首候选，选它等于选熟悉。"
+    },
+    {
+      "id": "challenger-forging",
+      "label": "锻炉锤炼",
+      "verdict": "competitive",
+      "lineage": "动力锤下的白热铁料与锻鳞",
+      "thesis": "每个回答是一锤：追问把回答锻长一寸，评分是力度数字，改进前后几何对照。「千锤百炼」本来就是这个受众的成语。",
+      "palette": ["#0B0B0D", "#2A2D31", "#FF5A11", "#FFF3C4"],
+      "materials": ["钢印模板字", "炽橙渐变铁料", "锻鳞粒子"],
+      "viewport": "左侧模板大字「把回答锤成型」，右侧 LIVE 追问面板：第 03 锤 → 回答前后对照条、追问深度 +2 层、rubric 维度刻度。",
+      "case": "融合成立：追问=锤击的改进闭环讲得清楚；但受众认同与清晰度都没能同时压过成绩单。",
+      "risk": "深底加单橙光正是技术品类的套路色。",
+      "comp": ".impeccable/mocks/decision/challenger-forging.png",
+      "hero": "https://impeccable.style/worlds/cards/metal-forging-patina-blacksmith-scale-shower-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/metal-forging-patina-blacksmith-scale-shower.webp"
+    },
+    {
+      "id": "challenger-ascii",
+      "label": "磷光字符现场",
+      "verdict": "competitive",
+      "lineage": "单色磷光终端与字符密度成像",
+      "thesis": "面试官以字符密度成像，对话、评分与追问同住一个等宽网格，亮度阶梯就是排版层级——产品本来就在终端里。",
+      "palette": ["#050705", "#9CCC3A"],
+      "materials": ["单墨磷光", "等宽字符网格", "密度即光"],
+      "viewport": "标题「被追问，才是练习」以字符块成像，右侧 LIVE 面试流：面试官字符肖像、glyph 密度评分条。",
+      "case": "受众轴成立（终端原住民）；但中文面试内容淹进字符密度，评分机制被装饰吞掉。",
+      "risk": "单色磷光绿已被做过千次，新意全押执行密度。",
+      "comp": ".impeccable/mocks/decision/challenger-ascii.png",
+      "hero": "https://impeccable.style/worlds/cards/medium-native-ascii-live-scene-render-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/medium-native-ascii-live-scene-render.webp"
+    },
+    {
+      "id": "challenger-bench",
+      "label": "剪辑台片轨",
+      "verdict": "declined",
+      "lineage": "胶片剪辑台的选择轨与挂针",
+      "palette": ["#0A0A0A", "#FF5A1F", "#F2F2F2"],
+      "materials": ["片基齿孔轨", "油脂笔白叉", "胶带旗标"],
+      "case": "融合失败：剪辑师的物料世界离工程师受众太远，片轨讲得出对话序列、讲不出评分。",
+      "kept": "状态是印记不是色相——油脂笔叉、胶带旗标、停在何处的旗标（已注入成绩单方向）。",
+      "hero": "https://impeccable.style/worlds/cards/operate-a-cutting-bench-select-rail-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/operate-a-cutting-bench-select-rail.webp"
+    }
+  ],
+  "reroll": {
+    "registers": ["plain", "safer", "bolder"],
+    "pool": "未发牌：工装街头引语语法、设计年刊图版、Saville 唱片目录——重掷可召回。"
+  },
+  "buildPath": {
+    "value": "comp",
+    "toggle": true
+  },
+  "canon": true,
+  "canonCard": {
+    "label": "品类标准",
+    "thesis": "深色 hero + 对话截图 + 三张功能卡 + CTA——这个品类每次都发的那张牌，执行到位。",
+    "palette": ["#0B1220", "#F8FAFC", "#2563EB"],
+    "materials": ["玻璃拟态卡片", "产品截图", "渐变按钮"],
+    "viewport": "居中标题「AI 帮你练面试」，下方一张聊天界面截图，三张图标卡，蓝色 CTA。",
+    "risk": "和竞品长得一样就是它的设计目标。",
+    "comp": ".impeccable/mocks/decision/canon.png"
+  },
+  "steer": true
+}

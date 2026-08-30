@@ -74,9 +74,9 @@ knowledge/
 | `questions/ai-engineer/scenarios.md` | AI | ✅ 8 题 + 1 留白位 |
 | `questions/fullstack-sa/README.md` | SA | ✅ 五轮导航 + JD 映射 |
 | `questions/fullstack-sa/round1-hr.md` | SA | ✅ 10 题（HR 初面） |
-| `questions/fullstack-sa/round2-solution.md` | SA | ✅ 11 题（业务方案面） |
+| `questions/fullstack-sa/round2-solution.md` | SA | ✅ 13 题（业务方案面） |
 | `questions/fullstack-sa/round3-technical.md` | SA | ✅ 10 题（技术深度面） |
-| `questions/fullstack-sa/round4-executive.md` | SA | ✅ 10 题（高管面） |
+| `questions/fullstack-sa/round4-executive.md` | SA | ✅ 12 题（高管面） |
 | `questions/fullstack-sa/round5-stress.md` | SA | ✅ 11 题（压力终面） |
 
 **累计**：28 个文件、200+ 道题、9 个留白位、涵盖 3 个角色（SRE / AI / 全栈 SA）。全栈 SA 按**多轮面试链路**组织（HR → 方案 → 技术 → 高管 → 压力），配套角色卡 `roles/fullstack-sa.md`。

@@ -1,0 +1,1 @@
+Category-standard SaaS dev-tool hero: navy #0B1220, centered white 「AI 帮你练面试」, blue #2563EB CTA, floating chat screenshot card with rubric panel, three glass feature cards below.
