@@ -5,6 +5,59 @@
 
 ---
 
+## [v0.4.3] - 2026-09-02
+
+**AI SA 岗位细分题库**：阿里云 SA 细分 Agent 工程 / AI Infra 两方向，各备一套专业轮题库，参考答案按线上最佳实践口径。
+
+### ✨ 新增（Added）
+- `knowledge/questions/ai-sa/README.md` — 细分导航：三线对比（全栈 SA / Agent 工程 / AI Infra 的核心命题与客户对话层级）、专业轮文件索引、**通用轮复用设计**（HR / 高管 / 压力轮 + 快问快答直接复用 fullstack-sa）
+- `knowledge/questions/ai-sa/agent-engineering.md` — Agent 工程方向 **13 题**（方案面 6 + 技术面 7）：
+  - 线上最佳实践主线：先单后多编排、工具粒度 + 结构化错误、分级护栏（读自动 / 写审批 / 高危双审 + 沙箱 + 最小凭证 + 审计）、三层幻觉治理、固定归因顺序（语料→检索→推理）、评测驱动运营闭环
+  - 结合个人真实弹药：mcp-database（37 个 MCP Server）答供应链安全，ResolveAgent 真实迭代答评测运营
+- `knowledge/questions/ai-sa/ai-infra.md` — AI Infra 方向 **13 题**（方案面 6 + 技术面 7）：
+  - 线上最佳实践主线：业务画像倒推算力规划（并发→token→卡数 ×1.3-1.5 冗余）、TCO 四本账、KV cache 显存数学、PD 分离的规模门槛与 KV 传输代价、量化选型 + 评测回归 + 灰度、慢节点检测与自动摘除、GPU 拓扑感知调度 / gang scheduling
+  - K8s 调度题标注 ACK 三年主场；GPU 推理栈按角色卡口径诚实标注相对弱项并给补法
+
+### 📝 文档（Documentation）
+- `knowledge/README.md` — 结构树新增 `questions/ai-sa/` 分支，文件清单同步至 34 文件（补录此前遗漏的 `resume/resume-sa.md`；角色卡路径修正为 skill 内 `.claude/skills/interview-coach/roles/fullstack-sa.md`）
+- `fullstack-sa/README.md` — 导航补充 ai-sa 细分题库入口（通用轮复用关系）
+
+---
+
+## [v0.4.2] - 2026-08-31
+
+**简历模板**：投递期启动，新增预填式简历模板。
+
+### ✨ 新增（Added）
+- `knowledge/resume/resume-template.md` — 简历模板（全栈 SA 版，已预填）：
+  - 按全栈 SA JD 能力模块组织「核心能力」关键词区（ATS 匹配）
+  - 工作经历四段递进叙事（TAM → SRE → ACK → Agent）+ 重点项目 A 版商业闭环叙事
+  - 开源作品集区（证明"动手实操"）、SA 量化维度速查表、投递前 10 项 ATS 自查清单
+  - 数字与快问快答「数字弹药卡」口径一致（文末口径纪律互相引用）
+
+### 📝 文档（Documentation）
+- `knowledge/README.md` — 结构树新增 `resume/` 分支，文件清单同步至 30 文件
+
+---
+
+## [v0.4.1] - 2026-08-31
+
+**全流程快问快答**：五轮题库的速记版，面试前突击用。
+
+### ✨ 新增（Added）
+- `knowledge/questions/fullstack-sa/quickfire-full-process.md` — 全面试流程**快问快答**：
+  - 56 题五轮速记版（每题 30 秒级答案 + 红线）
+  - **数字弹药卡**：项目数字连同口径一起背（面试官必深挖分子分母）
+  - 自我介绍三版本（30 秒 / 60 秒 / 3 分钟）
+  - 谈薪四步话术、反问清单、红线速查总表、面试前 24 小时清单
+- 素材来源：全栈 SA 岗位 JD + 个人职业素材库（oh-my-career）+ 求职方法论库（standup-coder-database）
+
+### 📝 文档（Documentation）
+- `fullstack-sa/README.md` — 导航补充快问快答入口，标注与题库口径一致
+- `knowledge/README.md` — 文件清单同步至 29 文件
+
+---
+
 ## [v0.4] - 2026-08-28
 
 **全栈 SA 多轮面试题库**：基于真实岗位 JD，新增第 3 个角色（全栈 SA），按完整面试链路组织。

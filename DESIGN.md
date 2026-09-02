@@ -1,0 +1,245 @@
+# DESIGN.md — Interview Coach GTM ·「教务处成绩单」视觉系统
+
+<!-- impeccable:design-schema 1 · ground-truth capture -->
+
+## 0. 记录基准（Ground Truth）
+
+本文记录**已建成**的视觉系统，只描述构建产物中实际存在的东西，不描述意图。唯一设计面（single surface）：
+
+- **产物**：`GTM/index.html`（单文件 HTML/CSS，零构建零依赖；唯一外部依赖是 Google Fonts）
+- **栅格资产**：`GTM/assets/paper-grain.png`（1024×1024 无缝纸纹 tile，带出处 sidecar `GTM/assets/paper-grain.prompt.txt`）
+- **渲染基准**：`.impeccable/review/` 下 `hero-repro.png`（1792×1024 首屏）、`desktop.png`（1780×5571 全页）、`mobile-hero.png`（780×1688）、`mobile.png`（780×16262 全页）
+- **产品约束**：`PRODUCT.md`（无用户见证/使用数据，不得虚构；样卷成绩已标注为演示数据）
+
+产物 body 顶部的方向契约（原文，逐字）：
+
+```
+DIRECTION CONTRACT · seed 645573e4 · assigned: 教务处成绩单
+THESIS: GTM 页就是一张成绩单——每轮练习是一门课，rubric 是分数；拒绝深色 hero + 聊天截图 + 三张功能卡的品类默认。
+OWN-WORLD: 档案纸 #F5F0E4 叠纸纹 tile / 墨黑 #1A1815 / 朱砂 #C23B22 / 淡青格线 #9DB2C8；发丝线、角线对位、圆章（feTurbulence 做旧）、红笔批注、tabular 数字。
+STORY: 访客理解「练面试 = 修一门课、被打分」，相信「我的实战能力从没被打过分」，行动「现在开练 · 修第一门课」+ GitHub。
+FIRST VIEWPORT: 满屏成绩单：抬头 / 考生信息行 / 四科成绩表（含缺考红戳）/ 圆章压角 / 红笔批注 / 朱砂实心按钮 + 描边链接。
+FORM: Persuade landing · assigned direction · seed 645573e4
+```
+
+世界观一句话：**整页就是一张教务处印制的成绩单**——档案纸、双线框、角线对位、淡青格线表格、圆章压角、红笔批注；朱砂是唯一饱和色，也是唯一的行动色。
+
+---
+
+## 1. 色板（Palette）与角色
+
+全部定义在 `:root`，全局只此一套，未见硬编码色值散落（仅 `--paper-deep` 的衍生物 `#D98E6F` 一处例外，见下）。
+
+| Token | 值 | 角色 | 实际用法 |
+| --- | --- | --- | --- |
+| `--paper` | `#F5F0E4` | 档案纸底 | body / `header.top` / `.sheet` / `.folder` / `.notice` 的背景色；`.scalebar .s4/.s5` 格底；按钮反白文字色 |
+| `--paper-deep` | `#EDE7D9` | 纸色加深一档 | 表头底（`.grades`/`.rub`/`.roles` thead）、`.cat-row:hover` 底、滚动条轨道、`.scalebar .s3` 格底 |
+| `--ink` | `#1A1815` | 墨黑（主文字/结构线） | 正文、标题、`.sheet` 双线框、`.btn-ghost` 边框、`code` 块底色、`folder` tab 底色、`--rule` 家族之外的一切实线 |
+| `--ink-soft` | `#57514A` | 淡墨（次级文字） | lede/评语/描述文字、角线（`.regmark`）、滚动条滑块、减分 ✕ 图标、角标注释 |
+| `--verm` | `#C23B22` | 朱砂（唯一饱和色） | 红笔批注、缺考红戳、圆章、`h2 .red` 强调、`btn-primary` 底、hover 下划线、分值圈画、`.cat-no`、加分 ✓ |
+| `--verm-deep` | `#A32D17` | 朱砂加深 | `btn-primary` 边框、topnav hover 文字色、rubric 权重列与角色表「首批开考」、configstrip 行内 code |
+| `--rule` | `#9DB2C8` | 淡青格线 | 成绩表/评分表/角色表的 `1px` 单元格线、考生信息行上下边线、触发词 chip 边框——**蓝色只以格线身份出现** |
+| `--rule-soft` | `#C6D2DE` | 淡青减淡 | 已定义于 `:root`，当前产物中未被引用（备用格线档） |
+| `--hair` | `#C9C4B8` | 发丝线 | `.sheet` 外圈 1px outline、目录行/步骤间/页脚分隔线、copybtn 边框 |
+
+衍生色（非 token，写死在使用处）：
+
+- `#D98E6F` — `.scalebar .s2`（7–8 Senior 格）的底色，是朱砂的浅调；配 `--ink` 文字。
+- `#8f8a80` — `promptbox pre .c` 注释文字色（墨底上的暖灰），当前 pre 内容尚未用到该 class，属预留 token。
+- 阴影均为 ink/verm 的 rgba：`rgba(26,24,21,…)`（纸面投影）、`rgba(163,45,23,.5)`（朱砂按钮投影）、`rgba(194,59,34,.25)`（缺考戳内圈）。
+
+用色法则：**朱砂 = 权力与批注**（章、戳、红笔、CTA、强调），墨黑 = 结构与正文，淡青 = 表格格线，其余一概是纸的两档深浅。
+
+---
+
+## 2. 字体排印（Typography）
+
+三个字体族 token，实际加载两支 Web 字体（`Noto Serif SC` 400/600/700/900 与 `Ma Shan Zheng`，均 `media="print" onload` 异步换装 + `<noscript>` 兜底）：
+
+| Token | 栈 | 实际用途 |
+| --- | --- | --- |
+| `--serif` | `"Noto Serif SC","Songti SC",serif` | 全站正文与标题。body `17px / line-height 1.75`（≤640px 降至 `16px`），`-webkit-font-smoothing:antialiased`。字重阶梯明确：wordmark/`h1`/`h2`/`td.score`/按钮主字 **900**，表头/`<b>`/`td.subj` **700**，`.btn-ghost`/wordmark small **600**，正文 **400** |
+| `--hand` | `"Ma Shan Zheng","Noto Serif SC",cursive` | 手写层，只出现在三处：红笔批注 `.pen-note`（`clamp(1.25rem,2.6vw,1.7rem)`，旋转 `-2deg`）、缺考红戳 `.stamp-absent`（`1.25em`，`letter-spacing:.2em`，旋转 `-5deg`）、五步闭环的中文数字序号 `.n`（壹贰叁肆伍，`2rem`，朱砂） |
+| `--mono` | `ui-monospace,"SF Mono",Menlo,Consolas,monospace` | 公文/机器层：`.subline` 副题（`0.7rem`，`letter-spacing:.34em`，uppercase）、档案编号 `.archno`（`0.72rem`）、目录编号 `.cat-no`（`0.78rem`）、`code` 块（`0.78–0.84rem`）、页脚（`0.78rem`）。**所有机器可读串（编号、日期、路径、参数值）一律 mono** |
+
+字号刻度（实测值）：`0.58rem`（移动端 subline）→ `0.7–0.78rem`（micro/mono 层）→ `0.82–0.95rem`（正文组件）→ `1–1.2rem`（组件标题）→ `clamp(1.5rem,3.4vw,2.4rem)`（h2）→ `clamp(1.7rem,4.6vw,3.1rem)`（h1，移动端锁 `1.32rem`）。
+
+排印规则：
+
+- 标题一律 900 黑体级字重 + 正字距（`letter-spacing:.02–.06em`），移动端收紧。
+- 小字信息层靠**宽字距**建立公文感：`.1–.34em` 不等，mono 层全部配 uppercase 或编号体。
+- `h2` 句式固定：陈述句 + 朱砂强调词（`<span class="red">`），句末中文句号。
+- 中文优先，代码/终端/技术名词保留英文原文（PRODUCT.md 约定在排印上的落点就是 mono 层）。
+
+---
+
+## 3. 间距与版式节奏
+
+- 容器：`.wrap{max-width:1120px;margin:0 auto;padding:0 28px}`（≤640px 收至 `16px`）。
+- 区块节奏：`section{padding:88px 0 0}`（≤640px `64px`）；收尾区 `.close{padding:110px 0 90px}`（≤640px `80px 0 64px`）；首屏 `.sheetzone{padding:56px 0 30px}`（≤640px 顶部 `34px`）。
+- 成绩单内衬：`padding:clamp(28px,5vw,64px) clamp(20px,5vw,72px) clamp(30px,4vw,56px)`——clamp 流体内衬是本页的惯例，`.notice`、圆章定位同理（`clamp(16px,6vw,84px)` 等）。
+- 组件内距实测值：目录行 `22px 6px`、步骤 `22px 18px 26px`、文件夹 `34px 28px 28px`、须知框 `38px clamp(20px,4vw,52px)`、表格单元 `10–16px`。
+- 间隙常用档：`8 / 10 / 12 / 14 / 16 / 20 / 22 / 26 / 30 / 34 / 38 / 44px`——大致 2px 步进的小刻度，不追求严格 8pt 栅格；**版式骨架靠线（rule）而不是靠留白分组**。
+- 区块头 `.rulehead`：空 flex 占位，`::after` 拉出一条 1px 发丝线通到右缘——每个 section 用一条横线开场，是全页统一的段落记号。
+- 版心内两栏：`.rubric-grid{1.5fr 1fr; gap:44px}`、`.folders{1.15fr 1fr; gap:36px}`，均有单列降级断点（见 §9）。
+
+---
+
+## 4. 成绩单组件语言（Transcript-Sheet Component Language）
+
+这是本设计系统的核心组件层，全部服务于「一张纸」的隐喻。
+
+### 4.1 纸面与双线框（`.sheet`）
+
+```css
+border:3px double var(--ink);
+outline:1px solid var(--hair);
+outline-offset:6px;
+box-shadow:0 2px 0 rgba(26,24,21,.08),0 22px 44px -18px rgba(26,24,21,.28);
+```
+
+墨黑 **3px double 双线框** + 外扩 6px 的 1px 发丝 outline 形成回字双框；阴影是「纸叠在纸上」的两层投影。`.notice` 用较轻的 `2px solid var(--ink)` 实线框，`.folder` 用 `1px solid var(--ink)` + 单层投影——**框线粗细 = 公文等级**：成绩单 > 须知 > 文件夹。
+
+### 4.2 角线对位（`.regmark`）
+
+四角 `22×22px` 十字对位线（1px 横竖线，`--ink-soft` 色），绝对定位在 `.sheet` 外 `-34px` 处（tl/tr/bl/br 四个修饰类），`pointer-events:none` + `aria-hidden`。≤640px 整体隐藏。这是印刷制版符号，只属于成绩单这一张纸。
+
+### 4.3 发丝线与格线
+
+- 发丝线 `--hair #C9C4B8`：目录行底、步骤分隔、页脚顶线、copybtn 边框——**同族内容的分隔**。
+- 格线 `--rule #9DB2C8`：`table.grades / table.rub / table.roles` 的 `border:1px solid`、`.inforow` 上下线、触发词 chip——**表格化数据的格**。表格一律 `border-collapse:collapse`，表头 `--paper-deep` 底 + `.1–.12em` 字距。
+- 装饰线 `.ornament`：左右两段 1px 墨线夹一枚 64×14 内联 SVG 菱形（`stroke:#1A1815; stroke-width:1.2`），居中 `max-width:640px`。
+
+### 4.4 成绩表（`table.grades`）
+
+四列（科目/成绩/等级/主考官评语）。科目列 700 加 `.06em` 字距；分数列 `font-variant-numeric:tabular-nums` + 900 字重 + `1.25em` 放大；评语列左对齐 `--ink-soft`。第四科「故障复盘」分数/等级均为 `—`，评语格放**缺考红戳** `.stamp-absent`：2.5px 朱砂边框 + 朱砂手写体 + `rotate(-5deg)` + `inset 0 0 0 1px rgba(194,59,34,.25)` 内圈，是全页最小的「章」。表下 `.tablenote`（`0.78rem` 淡墨）声明样卷演示数据——演示数据必须自证，这是硬约定。
+
+### 4.5 圆章（`.seal` / `.seal2`）
+
+内联 SVG `viewBox 0 0 200 200`：外圈 `r=92 stroke-width:7`、内圈 `r=60 stroke-width:2.5` 双环，中央五角星实填，上下两条 `textPath` 弧线排「面试教练教务处 / 成绩专用章」（`Noto Serif SC` 700，`fill:#C23B22`，`letter-spacing:6/10`）。做旧全靠一个滤镜：
+
+```html
+<filter id="inkrough">
+  <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="2" seed="7"/>
+  <feDisplacementMap in="SourceGraphic" scale="2.6"/>
+</filter>
+```
+
+印章实例规则：首屏 `.seal` 宽 `clamp(120px,15vw,178px)`，`rotate(-8deg)`，`mix-blend-mode:multiply`（油泥透纸），绝对定位压在成绩表右下角（`right:clamp(16px,6vw,84px); bottom:clamp(96px,16vw,150px)`），是**唯一的入场动画载体**；收尾区 `.seal2` 宽 `130px` 居中静置 `opacity:.9`，无动画。两处共用同一个 `#inkrough` 滤镜定义。
+
+### 4.6 红笔批注（`.pen-note`）
+
+手写体朱砂批语「建议重修：追问第 3 层」+ 一枚 0.9em 的 ✓ tick SVG + 一条满宽下划线 SVG（`viewBox 0 0 420 10; preserveAspectRatio:none`，路径 `M2 6 C 90 2, 200 9, 418 4`，`stroke-width:2.6; stroke-linecap:round`），整体 `rotate(-2deg)`。下划线以 `stroke-dasharray:420; stroke-dashoffset:420` 藏笔，`.sheet.in` 后 1.1s（延迟 .5s）画出——**红笔是在纸上补写的，不是印刷的**，所以它永远是手写体 + SVG 笔迹，永不正式排版。
+
+### 4.7 tabular 数字
+
+所有数字展示位强制 `font-variant-numeric:tabular-nums`：考生信息行 `.num`、分数列 `td.score`、目录时长 `.cat-meta`、rubric 权重 `td.w`、分档刻度 `.scalebar b`。公文数字必须纵向对齐，这是隐喻的一部分。
+
+### 4.8 其余公文组件
+
+- **培养方案目录** `.catalog`：顶部 `2px solid var(--ink)` 粗上线，行间发丝线；`.cat-no`（mono 朱砂编号「必修 · 一」）+ `.cat-name`（900，下挂 mono 英文 small）+ `.cat-desc` + 右对齐 `.cat-meta`；`hover` 整行 `--paper-deep` 底；选修行（`.elective`）全列降为淡墨。
+- **五步闭环** `.loop`：1px 墨框内的五列白格，格间发丝线，格间用 26×26 朱砂箭头 SVG（`stroke:var(--verm); stroke-width:2.2`）骑缝衔接（绝对定位 `right:-13px`，纸底遮线）。
+- **双形态文件夹** `.folder`：1px 墨框 + 顶部骑缝标签（`::before content:attr(data-tab)`，墨底纸字 `0.72rem` `.18em` 字距；`.alt` 变朱砂底）；内嵌 mono 路径条（墨底纸字，`white-space:nowrap; overflow-x:auto`）与触发词 chips（1px 淡青边）。
+- **分档刻度尺** `.scalebar`：1px 墨框、高 52px、五等分（`flex:2`），从朱砂实底（9–10）渐次褪到纸色（1–2 建议不通过）——**用色的褪失表达分数的褪失**，`role="img"` + `aria-label` 提供文本等价。
+- **须知框** `.notice`：2px 墨框，有序列表 marker 为朱砂 900 数字，内嵌墨底 `promptbox` 终端块。
+- 图标语言：全部细线内联 SVG（`stroke-width:1.2–2.6`，`round cap/join`），墨线或朱砂线，无 emoji、无图标字体、无填充式彩图。
+
+---
+
+## 5. 交互状态（States）
+
+| 交互面 | 状态与实测值 |
+| --- | --- |
+| topnav 链接 | hover：`border-bottom-color:var(--verm)` + 文字变 `--verm-deep`（常态 1px 透明下边线占位防跳） |
+| 分值圈画（hover score-circling） | `tr.grow:hover / :focus-within` 时，分数外接 SVG `<ellipse>`（`stroke:var(--verm); stroke-width:2.4; rotate(-3deg)`）由 `stroke-dasharray:320; stroke-dashoffset:320` 画到 `0`，`transition:.7s cubic-bezier(.16,1,.3,1)`——像阅卷人提笔圈分 |
+| `.cat-row` | hover：整行 `background:var(--paper-deep)`，`.2s` |
+| `.btn-primary`（朱砂实心） | hover：`translateY(-2px)` + 阴影加深；active：`translateY(1px)` + 阴影收紧；`transition:.18s` |
+| `.btn-ghost`（描边链接） | hover：底变 `--ink`、字变 `--paper`（整块反色），`.18s` |
+| `.copybtn`（复制开考 PROMPT） | hover：底 `--verm`、字 `--paper`、边框随色；点击后文字换「已复制」+ `disabled`（`opacity:.7`），2s 后复原；实现走 `navigator.clipboard`，失败兜底 `execCommand('copy')`，`cursor:pointer→default` |
+| `::selection` | 朱砂底 + 纸色字 |
+| `:focus-visible` | `outline:2px solid var(--verm); outline-offset:3px`，全站统一（键盘圈画与红笔同色系） |
+| 滚动条 | 轨道 `--paper-deep`、滑块 `--ink-soft` 带 3px 纸色边、6px 圆角——全站唯一的圆角（组件层面一律直角） |
+
+---
+
+## 6. 动效（Motion）
+
+**原则：内容默认全部可见；动效只有两处授权时刻（authored moments），其余都是状态微动。**
+
+1. **圆章盖章**（入场时刻之一）：`IntersectionObserver`（`threshold:.3`）首次命中 `#sheet` 后加 `.sheet.in` 并断开监听；`.seal` 播 `@keyframes stamp`：`0%{opacity:0; rotate(-16deg) scale(1.7)} → 60%{opacity:.95; rotate(-8deg) scale(.97)} → 100%{opacity:.92; scale(1)}`，时长 `.5s cubic-bezier(.16,1,.3,1) forwards`——从上方 1.7 倍砸下、过冲回弹。
+2. **红笔画线**（入场时刻之二）：同 `.sheet.in` 触发，`.pen-note` 下划线 `stroke-dashoffset:420 → 0`，`1.1s`、延迟 `.5s`——章先落，笔后写，两刻按序发生。
+3. 其余一切动效都是交互反馈：按钮 `.18s` 位移/投影、行 hover `.2s` 变底、圈画 `.7s`、复制按钮 `.15s` 变色。**没有滚动渐显、没有视差、没有循环动画**；除两处授权时刻外，无 JS 时页面内容完整可见（`html.js` class 已挂但 CSS 未依赖它；成绩表/按钮/批注文字全部静态可读）。
+
+`prefers-reduced-motion: reduce` 现状（如实记录）：**仅圆章被显式门控**——`.sheet.in .seal{animation:none; opacity:.92}`。红笔画线（transition，类触发即播）与 hover 圈画未被 reduced-motion 媒体查询覆盖，属已知缺口；扩展动效时应先补齐这一层门控。
+
+缓动约定：入场/圈画一律 `cubic-bezier(.16,1,.3,1)`（快出长收），按钮微动 `.18s` 线性档。
+
+---
+
+## 7. 纸纹栅格与出处约定（Paper-Grain Raster & Provenance）
+
+- 资产：`GTM/assets/paper-grain.png`，**1024×1024 无缝 tile**，暖档案纸纤维纹理，基色 `#F5F0E4`、极低对比、无文字无污渍无晕影。
+- 用法（三处，参数一致）：`body`、`header.top`、`.sheet` 均 `background-color:var(--paper)` 叠 `background-image:url("assets/paper-grain.png"); background-size:460px auto` 平铺——即纸色是兜底色，纸纹是叠加层，缩放视口时纹理固定 460px 周期。
+- **出处约定（provenance convention）**：每张随构建发布的 raster 必须带同名 `.prompt.txt` sidecar。`paper-grain.prompt.txt` 三行结构为：`PROVENANCE:`（本会话生成、impeccable build、comp-led、direction 教务处成绩单 / seed 645573e4）→ `PROMPT:`（生成提示词原文，含基色与禁项）→ `USE:`（使用位置与平铺参数）。方向契约 FINISH 行「every shipping raster carrying its provenance」即此约定的出处。**新增任何图片资产，必须同时写它的 sidecar，缺一不发。**
+
+---
+
+## 8. 响应式行为（Responsive）
+
+断点自上而下（实测于 CSS 与 mobile 截图）：
+
+- **≤900px**：`.rubric-grid` 降单列；`.loop` 五列降单列，格间朱砂箭头从右缘骑缝改为**底缘居中并 `rotate(90deg)` 朝下**（`bottom:-13px; left:50%; translateX(-50%)`），行间发丝线接管分隔。
+- **≤860px**：`.folders` 双文件夹降单列堆叠，骑缝 tab 保留。
+- **≤820px**：目录行四列网格改两列 `grid-template-areas:"no meta" "name meta" "desc desc"`——编号居左、时长居右同行，科目名换行，描述通栏。
+- **≤760px**：顶栏导航整体隐藏（锚点靠正文），档案编号 `.archno` 推到右侧。
+- **≤640px**（成绩单压缩档）：body `16px`；`.wrap` 内距 `16px`；`.sheet` 内衬收至 `26px 14px 24px`；`h1` 锁 `1.32rem`、字距 `.02em`；subline 收至 `0.58rem / .16em` 字距；**四角对位线 `.regmark` 隐藏**；成绩表 `0.76rem`、单元 `8px 5px`、分数列 `1.05em`、科目/成绩/等级列 `nowrap`、评语列 `word-break:break-word`；缺考戳收字距 `.12em`；**圆章缩至 `88px`、贴右 `right:2px; bottom:112px`** 仍压表角；`.pen-note` 通栏（`flex-basis:100%`）；双按钮改纵排、内距字距收紧；section 节奏降 `64px`。
+- **≤600px**：顶栏内距/间隙再收（`12px`），档案编号隐藏——顶栏只剩 wordmark。
+- 全局 `html,body{overflow-x:clip}` 防角线/圆章溢出横向滚动。
+
+移动端观感（mobile-hero.png 实证）：成绩单仍是完整一张纸——双线框、信息行、四科表、缺考戳、缩小的圆章与红笔批注次序不变，只是角线与导航等「制版附件」被裁掉。
+
+---
+
+## 9. 无障碍（Accessibility）
+
+对比度（按 WCAG 相对亮度计算，对 `--paper #F5F0E4`）：
+
+| 组合 | 对比度 | 判定 |
+| --- | --- | --- |
+| `--ink #1A1815` on `--paper` | ≈ **15.6 : 1** | AAA（正文/标题/墨底线） |
+| `--ink-soft #57514A` on `--paper` | ≈ **6.9 : 1** | AA（乃至 AAA normal），次级文字安全 |
+| `--verm #C23B22` on `--paper` | ≈ **4.7 : 1** | AA normal；红字实际都配 700/900 字重或 ≥1.25rem 大字（批注/戳/`h2 .red`/`.cat-no`） |
+| `--paper` on `--verm`（btn-primary） | ≈ **4.7 : 1** | AA normal，1rem/900 按钮字达标 |
+| `--paper` on `--ink`（code 块/folder tab） | ≈ **15.6 : 1** | AAA |
+| `#8f8a80` on `--ink`（代码注释） | ≈ **5.2 : 1** | AA |
+| `--ink` on `#D98E6F`（刻度尺 s2） | ≈ **6.8 : 1** | AA |
+
+- 键盘：全站 `:focus-visible{outline:2px solid var(--verm); outline-offset:3px}`（对纸 4.7:1，超过非文本 3:1 要求）；圈画椭圆额外绑 `:focus-within`，键盘聚焦行也能触发。
+- 语义：成绩表/rubric/角色表为真 `<table>`，表头 `scope="col"`；纯装饰（角线、饰线、圈画椭圆、下划线、箭头、tick）一律 `aria-hidden="true"`；圆章带 `aria-label="面试教练教务处 印章"`；刻度尺 `role="img"` + `aria-label` 全文等价；触发词组 `aria-label="触发关键词"`。
+- 动效降级：`prefers-reduced-motion` 下圆章直接静置 `opacity:.92`（见 §6 缺口说明）。
+- 韧性：字体异步换装 + `<noscript>` 回退（Songti SC/系统 serif 兜底）；复制按钮双路径（clipboard API → execCommand）；内容不依赖 JS 可见。
+- 语言与诚实：`lang="zh-CN"`；样卷成绩以 `.tablenote` 明示为演示数据，与 PRODUCT.md「不得虚构见证/数据」的承诺一致。
+
+---
+
+## 10. Do / Don't（守住这个世界）
+
+**Do**
+
+- 一切新表面从 `--paper` + 纸纹 tile（460px）起底；纸色是底，纹是叠层。
+- 线即层级：表格格线用 `--rule #9DB2C8`，同族分隔用发丝 `--hair #C9C4B8`，公文等级用墨黑实线（成绩单 3px double > 须知 2px solid > 文件夹 1px）；新组件先问「它在纸上是几等文书」。
+- 数字一律 `tabular-nums`；编号/日期/路径/参数一律 `--mono`；强调词用 `h2 .red` 句式。
+- 红色只以五种身份出现：印章（带 `#inkrough` 滤镜 + multiply + 轻旋转）、红戳、红笔批注（手写体 + SVG 笔迹）、CTA、强调/编号。新印章复用滤镜定义，勿另起炉灶。
+- 图标 = 细线内联 SVG（`stroke-width:1.2–2.6`、round cap），墨线或朱砂线。
+- 新动效默认不做；确需时走 `.sheet.in` 双时刻同款缓动 `cubic-bezier(.16,1,.3,1)`，并同步补 `prefers-reduced-motion` 门控。
+- 中文公文语域写文案（抬头/科目/评语/批语），代码与技术名词保留英文进 mono 层；演示数据必须自带「样卷」声明。
+- 每张新 raster 都带 `.prompt.txt` sidecar（PROVENANCE / PROMPT / USE 三行）。
+
+**Don't**
+
+- 不做深色 hero、聊天截图、三张功能卡——品类默认即出戏。
+- 不引入新饱和色相；淡青只做格线，朱砂浅调（`#D98E6F`）只做刻度底。渐变、圆角卡片、胶囊按钮（全站组件直角，圆角仅滚动条）一律不用。
+- 不用图标字体、emoji、插画位图、照片——纸面上只有字、线、章。
+- 不加滚动渐显/视差/循环动画；不为「丰富」添加第二个授权动效时刻。
+- 正文不小于 `0.76rem`；分数/日期不用非等宽数字；红字不用于 400 字重小正文（4.7:1 的 AA 余量是按加粗/大字算的）。
+- 不发没有出处 sidecar 的图片；不改动 `#inkrough`、`.sheet` 双线框、`460px` 纹理周期这三个「制版常数」——它们是这张纸的身份。

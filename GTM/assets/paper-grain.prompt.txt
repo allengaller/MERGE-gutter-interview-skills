@@ -1,0 +1,3 @@
+PROVENANCE: generated this session (impeccable build, comp-led, direction 教务处成绩单 / seed 645573e4).
+PROMPT: Seamless tile texture of aged warm parchment paper. Base color warm off-white #F5F0E4. Extremely subtle fine paper fiber grain and faint organic mottling, like a flat evenly lit scan of archival exam paper. Perfectly uniform tone across the entire image, no text, no stains, no vignette, no shadows, no edges, no objects — pure paper surface texture only, very low contrast.
+USE: GTM/index.html body / header.top / .sheet repeating background at 460px, over --paper.

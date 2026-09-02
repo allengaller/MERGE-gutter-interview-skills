@@ -22,7 +22,7 @@ knowledge/
 │   ├── agent-architectures.md     #   Agent 架构模式
 │   ├── rag-pipeline.md            #   RAG 全链路
 │   └── mcp.md                     #   MCP 协议
-└── questions/                     # 面试题库
+├── questions/                     # 面试题库
     ├── cloud-native-sre/
     │   ├── beginner.md            #   0-2y
     │   ├── intermediate.md        #   2-5y
@@ -35,13 +35,21 @@ knowledge/
     │   ├── senior.md
     │   ├── behavior.md
     │   └── scenarios.md           # AI 系统故障场景
-    └── fullstack-sa/              #   全栈 SA（多轮面试链路）
-        ├── README.md              #     五轮导航 + JD 能力映射
-        ├── round1-hr.md           #     HR 初面
-        ├── round2-solution.md     #     业务方案面（核心）
-        ├── round3-technical.md    #     技术深度面
-        ├── round4-executive.md    #     高管面
-        └── round5-stress.md       #     压力终面
+    ├── fullstack-sa/              #   全栈 SA（多轮面试链路）
+    │   ├── README.md              #     五轮导航 + JD 能力映射
+    │   ├── round1-hr.md           #     HR 初面
+    │   ├── round2-solution.md     #     业务方案面（核心）
+    │   ├── round3-technical.md    #     技术深度面
+    │   ├── round4-executive.md    #     高管面
+    │   ├── round5-stress.md       #     压力终面
+    │   └── quickfire-full-process.md #  全流程快问快答
+    └── ai-sa/                     #   AI SA 岗位细分（Agent 工程 / AI Infra）
+        ├── README.md              #     细分导航 + 通用轮复用
+        ├── agent-engineering.md   #     Agent 工程方向 13 题
+        └── ai-infra.md            #     AI Infra 方向 13 题
+└── resume/                        # 投递素材
+    ├── resume-sa.md               #   全栈 SA 简历草稿（真实信息底稿）
+    └── resume-template.md         #   简历模板（全栈 SA 版，已预填）
 ```
 
 ## 当前状态（v0.3 → v0.4）
@@ -78,8 +86,14 @@ knowledge/
 | `questions/fullstack-sa/round3-technical.md` | SA | ✅ 10 题（技术深度面） |
 | `questions/fullstack-sa/round4-executive.md` | SA | ✅ 12 题（高管面） |
 | `questions/fullstack-sa/round5-stress.md` | SA | ✅ 11 题（压力终面） |
+| `questions/fullstack-sa/quickfire-full-process.md` | SA | ✅ 全流程快问快答（56 题速记版 + 数字弹药卡 + 谈薪/反问/红线速查） |
+| `questions/ai-sa/README.md` | SA | ✅ Agent 工程 / AI Infra 细分导航 + 通用轮复用 |
+| `questions/ai-sa/agent-engineering.md` | SA | ✅ 13 题（方案面 6 + 技术面 7，线上最佳实践口径） |
+| `questions/ai-sa/ai-infra.md` | SA | ✅ 13 题（方案面 6 + 技术面 7，线上最佳实践口径） |
+| `resume/resume-sa.md` | SA | ✅ 全栈 SA 简历草稿（真实信息底稿） |
+| `resume/resume-template.md` | SA | ✅ 简历模板（全栈 SA 版，已预填 + 量化速查 + ATS 自查清单） |
 
-**累计**：28 个文件、200+ 道题、9 个留白位、涵盖 3 个角色（SRE / AI / 全栈 SA）。全栈 SA 按**多轮面试链路**组织（HR → 方案 → 技术 → 高管 → 压力），配套角色卡 `roles/fullstack-sa.md`。
+**累计**：34 个文件、200+ 道题、9 个留白位、涵盖 3 个角色（SRE / AI / 全栈 SA）。全栈 SA 按**多轮面试链路**组织（HR → 方案 → 技术 → 高管 → 压力），配套面试官角色卡 `.claude/skills/interview-coach/roles/fullstack-sa.md`，另有全流程快问快答速记卷、简历模板，以及 AI SA 岗位细分题库（Agent 工程 / AI Infra 两方向）。
 
 **下一版计划**（v0.3+）：
 - [ ] CI 加 link-check + markdown-lint，防止声明 vs 现实漂移
