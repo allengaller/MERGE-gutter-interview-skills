@@ -5,6 +5,46 @@
 
 ---
 
+## [v0.4.5] - 2026-09-03
+
+**开源项目一句话介绍实数化 + 简历最佳实践通顺化**：`knowledge/resume/resume-sa.md` 的 `# 开源项目` 区块此前的描述是复制粘贴占位（多个项目共用同一句），本版逐一到 `~/Documents/GitHub/` 下真实仓库读取 README + GTM，重写 22 条介绍。
+
+### 📝 文档（Documentation）
+- `knowledge/resume/resume-sa.md` — 开源项目 6 组 22 条全部重写：
+  - 数字全部取自各仓库 README/GTM 实测口径（如 kuba 94 案例、klaw 73 分析器 API 调用降 90%、docsy 21,000+ 篇大仓库、fde-scope 4 zones / 18 phases / 10 gates）；18 个公开仓库补真实 GitHub 链接（agent-up / docsy / sokr 为私有或无 remote，只留名字）；项目名校正为真实仓库名（docy→docsy、k8s-network-master→kubernetes-network-master、kuba-database→kuba）；剔除 resolve-agent GTM 中的"规划示意"数字，只用 README 实测数字
+  - 每条按"是什么 → 核心价值 → 亮点 → 与同类差异 → 数据证明"叙事链组织成连贯散文句，去掉箭头、括号、斜线等符号噪音，可整句朗读
+  - `open-demo` 条目随后按 2026-09-02 README v2.2.0 与 GTM 重写：凸显架构类案例占比四成以上（由 README 分类分布推算 408/959）、每案例自带架构图、旗舰项目 open-architect-diagram 架构图即代码与 open-mock 215 测试全绿，视角转向售前架构师"按客户场景检索、会前 30 分钟跑起来"的使用场景；仓库现已公开，补上 GitHub 链接
+
+---
+
+## [v0.4.4] - 2026-09-02
+
+**SA 多轮链路 skill 化 + 全库 SA 覆盖同步**：查漏补缺——ai-sa 题库此前只有"题"没有"演法"，本版把五轮链路的推进流程、评分卡、细分角色卡补进 skill 层，并同步所有入口文档。
+
+### ✨ 新增（Added）
+- `.claude/skills/interview-coach/flows/multi-round-sa.md` — SA 多轮面试链路 flow（HR → 方案 → 技术 → 高管 → 压力）：
+  - 轮次映射表：通用轮（R1/R4/R5）复用 fullstack-sa 题库，专业轮（R2/R3）按细分方向取 `ai-sa/agent-engineering.md` / `ai-sa/ai-infra.md`
+  - 每轮推进规则（开场念身份 → 逐题读题→答→复述确认→追问 ≤3 层 → 轮末口头小结不打详细分）
+  - **交叉验证机制**：前轮说过的数字/决策后轮自然再问，口径不一致当场戳穿（R5 压力面重点利用）
+- `.claude/skills/interview-coach/rubrics/multi-round-sa.md` — 多轮链路评分卡（10 分制，五轮各打一轮 + 加权综合）：
+  - 6 维加权：需求洞察 20% / 方案完整性 20% / 技术深度 20% / 商业敏感度 15% / **口径一致性 15%** / 沟通与抗压 10%
+  - 减分项含"口径矛盾被戳穿后改口""压力轮被激怒或讨好"；阈值区分"技术强 SA 意识弱"与"可拿 offer"
+- `.claude/skills/interview-coach/roles/ai-sa-agent.md` — Agent 工程方向面试官卡（demo 思维 / 无评测口径 / 高危无拦截是红线；收尾区分"能演示" vs "能运营"）
+- `.claude/skills/interview-coach/roles/ai-sa-infra.md` — AI Infra 方向面试官卡（卡数拍脑袋 / 只讲吞吐不讲延迟 / TCO 只算电费是红线；含"GPU 推理栈弱项诚实标注算加分"的评分口径；收尾区分"会堆卡" vs "会算账"）
+
+### 📝 文档（Documentation）
+- `SKILL.md` — description 补 SA 多轮链路与 ai-sa 角色卡触发词；"文件索引"表新增 4 行（multi-round flow/rubric + 2 张 ai-sa 角色卡）；启动步骤第 2 步补各角色默认流程（全栈 SA / AI SA → multi-round-sa）
+- `.claude/skills/interview-coach/README.md` — 目录树同步 4 个新文件
+- `prompts/quick-start.md` — 填词表补 SA 多轮链路 flow 与全栈 SA / AI SA 细分 role；新增"SA 多轮链路（五轮连面）"启动模板与 AI Infra 自带题目示例
+- `README.md`（仓库根）— 首批角色表补全栈 SA + AI SA 两细分（✅ 已支持）；双形态树补 `resume/`；触发关键词补 SA 多轮说法
+- `knowledge/questions/ai-sa/README.md` — "角色卡暂缺"注记更新为角色卡已就位（附 skill 内路径链接 + multi-round flow 入口）
+
+### 💭 设计变化（Changed）
+- **skill 四要素对 ai-sa 补齐**：此前 ai-sa 只有题库（弹药），没有 flow / rubric / 角色卡——链路现在与 fullstack-sa 同构，"题"与"演法"不再分离
+- **口径一致性升为一等评分维度**：交叉验证从"题库里的提示"升级为 flow 的推进机制 + rubric 的 15% 权重
+
+---
+
 ## [v0.4.3] - 2026-09-02
 
 **AI SA 岗位细分题库**：阿里云 SA 细分 Agent 工程 / AI Infra 两方向，各备一套专业轮题库，参考答案按线上最佳实践口径。

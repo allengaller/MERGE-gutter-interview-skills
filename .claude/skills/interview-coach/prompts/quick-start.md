@@ -15,6 +15,17 @@
 - `按 interview-coach skill 给我来一轮 故障复盘 面试，云原生 SRE 岗，3 年经验。`
 - `按 interview-coach skill 给我来一轮 系统设计 面试，AI 智能体工程师 岗，2 年经验。`
 
+### SA 多轮链路（五轮连面）
+
+```
+按 interview-coach skill 给我走一遍 SA 多轮面试，{ai-sa 细分} 方向，从 HR 面开始。
+```
+
+例：
+- `按 interview-coach skill 给我走一遍 SA 多轮面试，Agent 工程方向，从 HR 面开始。`
+- `按 interview-coach skill 给我走一遍 SA 多轮面试，AI Infra 方向，五轮全练。`
+- `按 interview-coach skill 给我走一遍 SA 多轮面试，全栈 SA，只练 Round 2 方案面。`
+
 ### 自带题目
 
 ```
@@ -23,6 +34,7 @@
 
 例：
 - `按 interview-coach skill 面试我，云原生 SRE 岗，题目是：etcd 集群失去 quorum 怎么处理。`
+- `按 interview-coach skill 面试我，AI SA · AI Infra 岗，题目是：客户要私有化部署 200 卡推理集群，怎么算卡数和 TCO。`
 
 ### 评价回答
 
@@ -41,8 +53,8 @@
 
 ## 内部填词表
 
-- **flow**: 系统设计 / 编码 / 行为 / 故障复盘
-- **role**: 云原生 SRE / AI 智能体工程师（见 roles/ 目录）
+- **flow**: 系统设计 / 编码 / 行为 / 故障复盘 / SA 多轮链路（HR → 方案 → 技术 → 高管 → 压力）
+- **role**: 云原生 SRE / AI 智能体工程师 / 全栈 SA / AI SA（Agent 工程 / AI Infra）（见 roles/ 目录）
 - **level**: Junior (0-2y) / Mid (2-5y) / Senior (5y+) / Staff+ (8y+)
 
 ## 高级用法

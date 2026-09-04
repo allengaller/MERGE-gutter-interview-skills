@@ -3,8 +3,8 @@ name: interview-coach
 description: |
   对话式面试教练 skill。触发场景：用户说"练个面试"/"模拟面试"/"来一轮面试"/"按 X 岗面试我"/"评价下我的回答"/"系统设计题"/"行为面试题"/"编码题"/"故障复盘"等。
   加载后，agent 扮演对应岗位的面试官，按 flow 推进对话，按 rubric 评分，最后给出改进建议。
-  支持的流程：系统设计、编码、行为、故障复盘（SRE 特有）。
-  支持的角色：见 roles/ 目录（首批 cloud-native-sre、ai-engineer）。
+  支持的流程：系统设计、编码、行为、故障复盘（SRE 特有）、SA 多轮面试链路（HR → 方案 → 技术 → 高管 → 压力）。
+  支持的角色：见 roles/ 目录（cloud-native-sre、ai-engineer、fullstack-sa 及 AI SA 细分 ai-sa-agent / ai-sa-infra）。
   知识库在 ../../knowledge/，题库、用户背景、主题知识都在那里按需引用。
 ---
 
@@ -27,7 +27,7 @@ description: |
 ## 启动步骤（必走）
 
 1. **确认角色**：如果用户没指定，从 `roles/` 目录里选一个；或者直接问"按哪个岗位面试你？"
-2. **确认流程**：从 `flows/` 目录里选一个（系统设计 / 编码 / 行为 / 故障复盘）。如果用户没说，按角色默认（云原生 SRE → 故障复盘 + 系统设计；AI 智能体工程师 → 系统设计 + 编码）
+2. **确认流程**：从 `flows/` 目录里选一个（系统设计 / 编码 / 行为 / 故障复盘 / SA 多轮链路）。如果用户没说，按角色默认（云原生 SRE → 故障复盘 + 系统设计；AI 智能体工程师 → 系统设计 + 编码；全栈 SA / AI SA → multi-round-sa）
 3. **读角色卡**：加载 `roles/<role>.md`，把"面试官画像""考察重点""红线"读到上下文
 4. **读 flow**：加载 `flows/<flow>.md`，按里面规定的"阶段 + 推进规则"走
 5. **读 rubric**：加载 `rubrics/<flow>.md`，用来打分
@@ -65,10 +65,14 @@ description: |
 | `flows/coding.md` | 编码面试流程 |
 | `flows/behavior.md` | 行为面试流程 |
 | `flows/incident-response.md` | 故障复盘流程（SRE 特有） |
+| `flows/multi-round-sa.md` | SA 多轮面试链路（HR → 方案 → 技术 → 高管 → 压力） |
 | `roles/_template.md` | 新增角色的模板（必填字段） |
 | `roles/cloud-native-sre.md` | 云原生 SRE 面试官画像 |
 | `roles/ai-engineer.md` | AI 智能体工程师面试官画像 |
-| `rubrics/*.md` | 各流程的评分维度 |
+| `roles/fullstack-sa.md` | 全栈 SA（解决方案架构师）面试官画像 |
+| `roles/ai-sa-agent.md` | AI SA · Agent 工程方向面试官画像 |
+| `roles/ai-sa-infra.md` | AI SA · AI Infra 方向面试官画像 |
+| `rubrics/*.md` | 各流程的评分维度（SA 多轮用 `multi-round-sa.md`） |
 | `prompts/quick-start.md` | 一句话启动 prompt 模板 |
 | `CONFIG.md` | **可配置开关**（严格度 / 时长 / 追问层级 / 反馈风格 等 12 个维度） |
 | `../../knowledge/` | 知识库（题库、主题、用户背景） |

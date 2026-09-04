@@ -33,4 +33,4 @@ Agent 工程 SA / AI Infra SA 与全栈 SA 共享同一套软性轮次，直接�
 
 - **投哪个岗练哪套**：Agent 工程岗练 agent-engineering.md + 全栈 SA 的 Round 3 RAG 部分；AI Infra 岗练 ai-infra.md + Round 3 的 K8s/SRE 送分题（AI Infra 面试官必问 K8s 功底）
 - **线上最佳实践是答题主线**：每个参考要点都强调生产级做法（评测驱动、灰度、护栏、成本闭环）——面试官区分"玩过 demo"和"上过生产"就看这些
-- 角色卡暂缺：模拟面试时可先用 `roles/fullstack-sa.md` + 本目录题库组合，后续按需补 `roles/ai-sa-agent.md` / `roles/ai-sa-infra.md`
+- 角色卡已就位：Agent 工程 / AI Infra 细分分别用 skill 里的 [ai-sa-agent](../../../.claude/skills/interview-coach/roles/ai-sa-agent.md) / [ai-sa-infra](../../../.claude/skills/interview-coach/roles/ai-sa-infra.md)（R2/R3 专业轮）；HR / 高管 / 压力等通用轮仍按 `roles/fullstack-sa.md` 画像。五轮推进与交叉验证规则见 [multi-round-sa flow](../../../.claude/skills/interview-coach/flows/multi-round-sa.md)

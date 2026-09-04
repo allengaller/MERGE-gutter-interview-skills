@@ -16,14 +16,15 @@
 gutter-interview-skills/
 ├── .claude/skills/interview-coach/    # Skill 形态：给 agent 加载
 │   ├── SKILL.md                       #   主入口（description + 触发条件）
-│   ├── flows/                         #   面试流程（系统设计/编码/行为/故障复盘）
+│   ├── flows/                         #   面试流程（系统设计/编码/行为/故障复盘/SA 多轮链路）
 │   ├── roles/                         #   角色卡（面试官画像）
 │   ├── rubrics/                       #   评分维度
 │   └── ...
 ├── knowledge/                         # 知识库形态：给人/agent 直接读
 │   ├── roles/                         #   按角色：用户背景画像 + 项目经验 + 技能树
 │   ├── topics/                        #   按主题：可复用的知识块
-│   └── questions/                     #   按角色分级的面试题库
+│   ├── questions/                     #   按角色分级的面试题库
+│   └── resume/                        #   简历：模板 + 项目经历写法
 ├── archive/                           # v1 历史归档（git 保留）
 └── README.md                          # 你正在读
 ```
@@ -38,9 +39,13 @@ gutter-interview-skills/
 |------|------|------|
 | **云原生 SRE** | K8s / etcd / 可观测性 / 故障响应 | ✅ 首批 |
 | **AI 智能体工程师** | Agent / RAG / MCP / 智能体语料 | ✅ 首批 |
-| 后端 / 全栈 / 数据 | 后续按需扩展 | ⏳ 计划中 |
+| **全栈 SA（解决方案架构师）** | 五轮链路：HR → 方案 → 技术 → 高管 → 压力 | ✅ 已支持 |
+| **AI SA · Agent 工程方向** | Agent 生产化 / 评测闭环 / 护栏安全（细分题库） | ✅ 已支持 |
+| **AI SA · AI Infra 方向** | 算力规划 / TCO / 推理优化（细分题库） | ✅ 已支持 |
+| 后端 / 数据 | 后续按需扩展 | ⏳ 计划中 |
 
 > 第一版先用我自己的背景（云原生 SRE + AI 智能体开发）打底，跑通流程后再横向扩展。
+> SA 方向是为阿里云 SA 岗求职新增：`knowledge/questions/ai-sa/` 有方案面 + 技术面细分题库，`flows/multi-round-sa.md` 负责五轮推进与交叉验证。
 
 ## 使用方式
 
@@ -74,6 +79,7 @@ cat knowledge/roles/cloud-native-sre/README.md
 - 「练个面试」「模拟面试」「给我来一轮面试」
 - 「这个题怎么答」「评价一下我的回答」
 - 「系统设计题 / 编码题 / 行为面试题」
+- 「走一遍 SA 多轮面试」「HR 面 / 方案面 / 技术面 / 高管面 / 压力面」
 - 「按 [角色] 岗面试我」
 
 ## 扩展指南

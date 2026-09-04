@@ -12,16 +12,21 @@
 │   ├── system-design.md
 │   ├── coding.md
 │   ├── behavior.md
-│   └── incident-response.md
+│   ├── incident-response.md
+│   └── multi-round-sa.md   # SA 多轮面试链路（HR → 方案 → 技术 → 高管 → 压力）
 ├── roles/                # 角色卡（面试官画像）
 │   ├── _template.md      #   新增角色时的模板
 │   ├── cloud-native-sre.md
-│   └── ai-engineer.md
+│   ├── ai-engineer.md
+│   ├── fullstack-sa.md
+│   ├── ai-sa-agent.md    #   AI SA · Agent 工程方向
+│   └── ai-sa-infra.md    #   AI SA · AI Infra 方向
 ├── rubrics/              # 评分维度
 │   ├── system-design.md
 │   ├── coding.md
 │   ├── behavior.md
-│   └── incident-response.md
+│   ├── incident-response.md
+│   └── multi-round-sa.md
 └── prompts/              # 启动 prompt 模板
     └── quick-start.md
 ```
