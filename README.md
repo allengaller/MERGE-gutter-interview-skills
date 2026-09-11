@@ -16,15 +16,15 @@
 gutter-interview-skills/
 ├── .claude/skills/interview-coach/    # Skill 形态：给 agent 加载
 │   ├── SKILL.md                       #   主入口（description + 触发条件）
-│   ├── flows/                         #   面试流程（系统设计/编码/行为/故障复盘/SA 多轮链路）
-│   ├── roles/                         #   角色卡（面试官画像）
-│   ├── rubrics/                       #   评分维度
+│   ├── 流程/                          #   面试流程（系统设计/编码/行为/故障复盘/SA 多轮链路）
+│   ├── 角色卡/                        #   角色卡（面试官画像）
+│   ├── 评分/                          #   评分维度
 │   └── ...
-├── knowledge/                         # 知识库形态：给人/agent 直接读
-│   ├── roles/                         #   按角色：用户背景画像 + 项目经验 + 技能树
-│   ├── topics/                        #   按主题：可复用的知识块
-│   ├── questions/                     #   按角色分级的面试题库
-│   └── resume/                        #   简历：模板 + 项目经历写法
+├── 知识库/                            # 知识库形态：给人/agent 直接读
+│   ├── 画像/                          #   按角色：用户背景画像 + 项目经验 + 技能树
+│   ├── 主题/                          #   按主题：可复用的知识块
+│   ├── 题库/                          #   按角色分级的面试题库
+│   └── 简历/                          #   简历：模板 + 项目经历写法
 ├── archive/                           # v1 历史归档（git 保留）
 └── README.md                          # 你正在读
 ```
@@ -45,7 +45,7 @@ gutter-interview-skills/
 | 后端 / 数据 | 后续按需扩展 | ⏳ 计划中 |
 
 > 第一版先用我自己的背景（云原生 SRE + AI 智能体开发）打底，跑通流程后再横向扩展。
-> SA 方向是为阿里云 SA 岗求职新增：`knowledge/questions/ai-sa/` 有方案面 + 技术面细分题库，`flows/multi-round-sa.md` 负责五轮推进与交叉验证。
+> SA 方向是为阿里云 SA 岗求职新增：`知识库/题库/AI-SA/` 有方案面 + 技术面细分题库，`流程/多轮SA.md` 负责五轮推进与交叉验证。
 
 ## 使用方式
 
@@ -58,18 +58,18 @@ gutter-interview-skills/
 
 agent 会自动：
 1. 读取 `.claude/skills/interview-coach/SKILL.md`
-2. 按 `roles/cloud-native-sre.md` 配置面试官
-3. 按 `flows/system-design.md` 推进流程
-4. 按 `rubrics/system-design.md` 评估回答
+2. 按 `角色卡/云原生SRE.md` 配置面试官
+3. 按 `流程/系统设计.md` 推进流程
+4. 按 `评分/系统设计.md` 评估回答
 
 ### 2. 直接当知识库读
 
 ```bash
 # 浏览题库
-cat knowledge/questions/cloud-native-sre/senior.md
+cat 知识库/题库/云原生SRE/高级.md
 
 # 看角色画像
-cat knowledge/roles/cloud-native-sre/README.md
+cat 知识库/画像/云原生SRE/画像.md
 ```
 
 ## 触发关键词
@@ -86,11 +86,11 @@ cat knowledge/roles/cloud-native-sre/README.md
 
 想加新角色？三步：
 
-1. 在 `knowledge/roles/<新角色>/` 下建 `README.md`（画像）+ `projects.md`（项目经验）+ `skills.md`（技能树）
-2. 在 `knowledge/questions/<新角色>/` 下按 beginner/intermediate/senior 建题库
-3. 在 `.claude/skills/interview-coach/roles/<新角色>.md` 建角色卡（给 agent 用的精简版）
+1. 在 `知识库/画像/<新角色>/` 下建 `画像.md`（画像）+ `项目.md`（项目经验）+ `技能.md`（技能树）
+2. 在 `知识库/题库/<新角色>/` 下按 初级/中级/高级 建题库
+3. 在 `.claude/skills/interview-coach/角色卡/<新角色>.md` 建角色卡（给 agent 用的精简版）
 
-详见 `knowledge/README.md` 和 `.claude/skills/interview-coach/README.md`。
+详见 `知识库/索引.md` 和 `.claude/skills/interview-coach/README.md`。
 
 ---
 

@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la /Users/allengaller/Documents/GitHub/allengaller/gutter-interview-skills && find /Users/allengaller/Documents/GitHub/allengaller/gutter-interview-skills -type f -not -path '*/.git/*' | head -50)",
+      "Bash(find /Users/allengaller/Documents/GitHub/allengaller/gutter-interview-skills/.qoder -type f | head -50)"
+    ]
+  }
+}
