@@ -1,0 +1,27 @@
+name: docs
+
+on:
+  push:
+    paths:
+      - "**.md"
+      - "scripts/check-docs.py"
+      - ".github/workflows/docs.yml"
+  pull_request:
+    paths:
+      - "**.md"
+      - "scripts/check-docs.py"
+      - ".github/workflows/docs.yml"
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 校验链接、markdown 与声明的不变量
+        run: python scripts/check-docs.py
